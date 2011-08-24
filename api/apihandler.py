@@ -5,6 +5,7 @@ from google.appengine.ext.webapp import util
 from google.appengine.ext import db
 # appengine still uses python 2.5, when it upgrades we can use the built-in json module
 from django.utils import simplejson as json
+import urllib
 
 
 def getapi_schemename(path_url, prefix_url):
@@ -41,6 +42,7 @@ class AppSettingsHandler(webapp.RequestHandler):
     def get(self):
         scheme = getapi_schemename(self.request.path, AppSettingsHandler.prefix_url)
         if scheme:
+            scheme = urllib.unquote(scheme)
             item = RhinoAppSettings.get_from_db(scheme)
             if item: self.response.out.write(item.settings)
             else: self.error(404) #not found
