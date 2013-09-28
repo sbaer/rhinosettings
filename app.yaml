@@ -1,11 +1,12 @@
 application: rhinosettings
 version: 1
-runtime: python
+runtime: python27
 api_version: 1
+threadsafe: yes
 
 handlers:
 - url: /
-  script: main.py
+  script: main.application
 - url: /api/.*
-  script: api/apihandler.py
+  script: api.apihandler.application
 

@@ -1,17 +1,9 @@
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
+import webapp2
 
 
-class MainHandler(webapp.RequestHandler):
+class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.out.write('Hello world!')
 
 
-def main():
-    application = webapp.WSGIApplication([('/', MainHandler)],
-                                         debug=True)
-    util.run_wsgi_app(application)
-
-
-if __name__ == '__main__':
-    main()
+application = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
